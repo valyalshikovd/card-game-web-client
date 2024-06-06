@@ -1,0 +1,128 @@
+.card {
+    position: relative;
+    box-sizing: border-box;
+    width: 10vmin;
+    height: 100px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-right: 30px;
+    float: left;
+    background-color: white;
+    background-image: url('./newbackground.png');
+    background-position-x: 0px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px #555555 solid;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 3px 0px #000000;
+    box-shadow: 2px 2px 3px 0px #000000;
+
+}
+.card2 {
+    position: relative;
+    box-sizing: border-box;
+    width: 10vmin;
+    height: 100px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-right: 30px;
+    float: left;
+    background-color: white;
+    background-image: url('./newbackground.png');
+    background-position-x: 0px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px #555555 solid;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 3px 0px #000000;
+    box-shadow: 2px 2px 3px 0px #000000;
+
+}
+
+
+.card2child {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    box-sizing: border-box;
+    width: 10vmin;
+    height: 100px;
+    margin: 10px;
+    float: left;
+    background-color: white;
+    /* background-image: url('https://i.imgur.com/yKggR5N.png'); */
+    background-image: url('./newbackground.png');
+
+    /* background-size: cover; */
+    background-position-x: 0px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px #555555 solid;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 3px 0px #000000;
+    box-shadow: 2px 2px 3px 0px #000000;
+}
+
+
+.card2 :hover{
+    position: absolute;
+    left: 10px;
+
+    box-sizing: border-box;
+    width: 10vmin;
+    min-height: 100px;
+    margin: 10px;
+    float: left;
+    background-color: white;
+    top: 50px;
+    /* background-image: url('https://i.imgur.com/yKggR5N.png'); */
+    background-image: url('./newbackground.png');
+    /* background-size: cover; */
+    background-position-x: 0px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px #555555 solid;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 3px 0px #000000;
+    box-shadow: 2px 2px 3px 0px #000000;
+}
+
+.moved{
+    position: absolute;
+    cursor: grab;
+    transition: transform 1s ease;
+}
+
+.moved:hover{
+    position: absolute;
+    cursor: grab;
+    transform: translateY(-50px);
+}
+
+.card3 {
+    position: relative;
+    box-sizing: border-box;
+    width: 10vmin;
+    height: 150px;
+
+    float: left;
+    background-color: white;
+    background-image: url('./newbackground.png');
+    background-position-x: 0px;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px #555555 solid;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 3px 0px #000000;
+    box-shadow: 2px 2px 3px 0px #000000;
+}
+.cardhandler {
+    position: absolute;
+    left: 40%;
+
+}

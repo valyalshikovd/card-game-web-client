@@ -1,0 +1,9 @@
+.abbriv{
+    background-color: #fff;
+    margin: 40px 20px 20px 20px; /* Паддинг сверху 30px, остальные 20px */
+    border: 2px solid #333;
+    border-radius: 15px; /* Радиус сглаживания углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для эффекта */
+    max-width: 400px;
+    text-align: center;
+}

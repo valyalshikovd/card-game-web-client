@@ -1,0 +1,45 @@
+.main-room {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.component-room {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px; /* Ширина компонента */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title-room {
+    text-align: center;
+}
+
+.button-container-room {
+    display: flex;
+    justify-content: center; /* Выравнивание по центру */
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px;
+}
+
+.button-room {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.messages-room {
+    margin-top:20px;
+}
+
+.messages-room p {
+    margin: 5px 0;
+}

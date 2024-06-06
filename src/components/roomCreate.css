@@ -1,0 +1,10 @@
+
+
+.component-create-room {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 200px; /* Ширина компонента */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}

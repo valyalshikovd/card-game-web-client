@@ -1,0 +1,19 @@
+.container-rooms {
+    width: 80%;
+    min-width: 300px; /* Минимальная ширина контейнера */
+    min-height: 200px; /* Минимальная высота контейнера */
+    background-color: #ffffff; /* Белый фон */
+    border-radius: 20px; /* Закругленные углы */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+    text-align: center; /* Центрирование содержимого */
+    position: relative; /* Позиционирование для кнопки */
+}
+
+.button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+}
+
