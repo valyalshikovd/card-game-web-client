@@ -2,7 +2,7 @@
 
 export const socketCreate =  (room, userName, func ) => {
 
-    const ws = new WebSocket("ws://localhost:8080/websocket");
+    const ws = new WebSocket("ws://card-game-backend-spring-production.up.railway.app/websocket");
 
     console.log("Сокет создается")
 
