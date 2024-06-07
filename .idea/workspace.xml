@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4d28cfb-4842-4aa8-9994-63c11981a5d3" name="Changes" comment="v1">
+    <list default="true" id="c4d28cfb-4842-4aa8-9994-63c11981a5d3" name="Changes" comment="v4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CardInHandComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardInHandComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GameComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/restApiUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/restApiUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/webSocketUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/webSocketUtils.js" afterDir="false" />
     </list>
@@ -39,9 +42,27 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -51,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717709940596</updated>
       <workItem from="1717709942309" duration="93000" />
-      <workItem from="1717710051196" duration="1253000" />
+      <workItem from="1717710051196" duration="15662000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <option name="closed" value="true" />
@@ -61,7 +82,31 @@
       <option name="project" value="LOCAL" />
       <updated>1717710168907</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v2">
+      <option name="closed" value="true" />
+      <created>1717712849709</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717712849709</updated>
+    </task>
+    <task id="LOCAL-00003" summary="v3">
+      <option name="closed" value="true" />
+      <created>1717713024104</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717713024104</updated>
+    </task>
+    <task id="LOCAL-00004" summary="v4">
+      <option name="closed" value="true" />
+      <created>1717713170424</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717713170424</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -69,6 +114,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1" />
+    <MESSAGE value="v2" />
+    <MESSAGE value="v3" />
+    <MESSAGE value="v4" />
+    <option name="LAST_COMMIT_MESSAGE" value="v4" />
   </component>
 </project>

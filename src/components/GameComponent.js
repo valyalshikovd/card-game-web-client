@@ -172,7 +172,7 @@ const GameComponent = (props) => {
         if (selectedCard != null && selectedCard.suit === table[index].downCard.suit && cardValues[selectedCard.rank] >= cardValues[table[index].downCard.rank]
             || (selectedCard.suit === trump.suit && table[index].downCard.suit !== trump.suit)
         ) {
-            sendStepMessage(index, false)        //todo дополнить условие до козырной карты
+            sendStepMessage(index, false)
         }
     }
 
