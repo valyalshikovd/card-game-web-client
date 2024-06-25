@@ -1,7 +1,7 @@
 
 
 
-const URL = "http://localhost:8080/api/v1/room"
+const URL = "http://card-game-backend-spring-production.up.railway.app/api/v1/room"
 
 
 export const getRooms = async () => {
