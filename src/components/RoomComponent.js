@@ -39,7 +39,7 @@ const RoomComponent = (props) => {
     let ws = useRef()
     useState(
         () => {
-            ws.current = socketCreate(props.item.roomName, props.name, (event) => {
+            ws.current = socketCreate(props.item.roomId, props.name, (event) => {
                      })
 
                  ws.current.onmessage = (event) => {
@@ -51,7 +51,6 @@ const RoomComponent = (props) => {
     const gameFinish = () => {
         setIsGameStarted(false)
         setReadyFlag(false)
-
         handleAddNewNotification("Игра завершилась")
     }
 
@@ -61,14 +60,11 @@ const RoomComponent = (props) => {
     }
 
     function readyToPlayHandler() {
-
-
         if(readyFlag){
-            socketSendMessage(ws.current, props.item.roomName, props.name, "unreadyToPlay", null)
+            socketSendMessage(ws.current, props.item.roomId, props.name, "unreadyToPlay", null)
         }else {
-            socketSendMessage(ws.current, props.item.roomName, props.name, "readyToPlay", null)
+            socketSendMessage(ws.current, props.item.roomId, props.name, "readyToPlay", null)
         }
-
         setReadyFlag( prevReadyFlag => !prevReadyFlag)
     }
 
@@ -78,7 +74,7 @@ const RoomComponent = (props) => {
             isGameStarted ?
                 (
                     <div>
-                        <GameComponent ws={ws.current} room = {props.item.roomName} userName = {props.name} gameFinished = {gameFinish} wsCommand = {socketCommands} ></GameComponent>
+                        <GameComponent ws={ws.current} room = {props.item.roomId} userName = {props.name} gameFinished = {gameFinish} wsCommand = {socketCommands} ></GameComponent>
                     </div>
                 )
                 :

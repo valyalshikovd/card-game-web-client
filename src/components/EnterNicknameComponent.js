@@ -11,6 +11,9 @@ const EnterNicknameComponent = (props) => {
         setNickName(event.target.value)
     }
     const handleRooms = () => {
+        if(nickName === ""){
+            return
+        }
         props.handleSetRooms(true)
         props.handleSetName(nickName)
     }

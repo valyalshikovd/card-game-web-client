@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4d28cfb-4842-4aa8-9994-63c11981a5d3" name="Changes" comment="v4">
+    <list default="true" id="c4d28cfb-4842-4aa8-9994-63c11981a5d3" name="Changes" comment="v5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CardInHandComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardInHandComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateRoomComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateRoomComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EnterNicknameComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EnterNicknameComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GameComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GameComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RoomComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RoomComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RoomsComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RoomsComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cards.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/photo_2024-03-27_14-25-16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/cards.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/restApiUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/restApiUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/webSocketUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/webSocketUtils.js" afterDir="false" />
     </list>
@@ -32,20 +39,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\770vd\WebstormProjects\card-game-web-client\card-game-web-client\src\components" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -72,7 +85,9 @@
       <option name="presentableId" value="Default" />
       <updated>1717709940596</updated>
       <workItem from="1717709942309" duration="93000" />
-      <workItem from="1717710051196" duration="15662000" />
+      <workItem from="1717710051196" duration="16269000" />
+      <workItem from="1717842674720" duration="12780000" />
+      <workItem from="1719321714905" duration="10272000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <option name="closed" value="true" />
@@ -106,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717713170424</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v5">
+      <option name="closed" value="true" />
+      <created>1717804632850</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717804632850</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +140,7 @@
     <MESSAGE value="v2" />
     <MESSAGE value="v3" />
     <MESSAGE value="v4" />
-    <option name="LAST_COMMIT_MESSAGE" value="v4" />
+    <MESSAGE value="v5" />
+    <option name="LAST_COMMIT_MESSAGE" value="v5" />
   </component>
 </project>

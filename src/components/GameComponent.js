@@ -27,10 +27,10 @@ const GameComponent = (props) => {
     const [isWinner, setIsWinner] = useState(false)
     const [timeHidden, setTimeHidden] = useState(true)
     const [time, setTime] = useState(30)
-    const styleCardSize = {maxHeight: '150px', maxWidth: '130px', height: '150px', width: '100px'}
     const [containerBounds, setContainerBounds] = useState(null);
     const containerRef = useRef()
     const [containerInfo, setContainerInfo] = useState([]);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
     const cardValues = {
         "TWO": 2,
@@ -48,6 +48,12 @@ const GameComponent = (props) => {
         "ACE": 14
     };
 
+    window.addEventListener("alert", function(event){
+        surrender()
+        setIsGameOver(true)
+        setIsWinner(false)
+    });
+
 
     const socketCommands = {
         ...props.wsCommand,
@@ -57,38 +63,35 @@ const GameComponent = (props) => {
         },
         "game_state": (payload) => {
 
+            try {
+                let gameState = JSON.parse(payload)
+                setCards(gameState.playerCards)
+                setTrump(gameState.trump)
+                setCurrentPlayer(gameState.currentPlayer)
+                setCountCardsOnTable(gameState.countCardsOnTable)
+                setAreThereAnyUnbrokenCards(gameState.areThereAnyUnbrokenCards)
+                setDeffensePlayer(gameState.deffencePlayer)
+                setCountCardInStack(gameState.countCardsInStack)
+                setDraw(gameState.draw)
+                setIsGameOver(gameState.gameOver)
+                setIsWinner(gameState.winner)
+                setCountCardAtOpp(gameState.countCardAtOpp)
 
-            let gameState = JSON.parse(payload)
+                if (gameState.table == null)
+                    setTable([])
+                else
+                    setTable(gameState.table)
 
-            console.log(payload)
-
-            setCards(gameState.playerCards)
-            setTrump(gameState.trump)
-            setCurrentPlayer(gameState.currentPlayer)
-            setCountCardsOnTable(gameState.countCardsOnTable)
-            setAreThereAnyUnbrokenCards(gameState.areThereAnyUnbrokenCards)
-            setDeffensePlayer(gameState.deffencePlayer)
-            setCountCardInStack(gameState.countCardsInStack)
-            setDraw(gameState.draw)
-            setIsGameOver(gameState.gameOver)
-            setIsWinner(gameState.winner)
-            setCountCardAtOpp(gameState.countCardAtOpp)
-
-            if (gameState.table == null)
-                setTable([])
-            else
-                setTable(gameState.table)
-
-            if (gameState.currentPlayer) {
-                setTimeHidden(false)
-                setTime(30)
+                if (gameState.currentPlayer) {
+                    setTimeHidden(false)
+                    setTime(30)
+                }
+                if (!gameState.currentPlayer)
+                    setTimeHidden(true)
+                updateContainerInfo()
+            }catch (e){
+                alert("Ошибка в принятии игрового состояния")
             }
-            if (!gameState.currentPlayer)
-                setTimeHidden(true)
-
-
-
-            updateContainerInfo()
         }
     }
 
@@ -103,19 +106,34 @@ const GameComponent = (props) => {
 
     useEffect(() => {
 
-        updateContainerInfo();
+        try {
 
-        if (!isWsActual) {
-            props.ws.onmessage = (event) => {
-                socketCommands[JSON.parse(event.data).command](JSON.parse(event.data).payload)
+            updateContainerInfo();
+
+            if (!isWsActual) {
+                props.ws.onmessage = (event) => {
+                    socketCommands[JSON.parse(event.data).command](JSON.parse(event.data).payload)
+                }
+
+                socketSendMessage(props.ws, props.room, props.userName, "getGameState", null)
+                setIsWsActual(true)
+            }
+            if (containerRef.current) {
+                const bounds = containerRef.current.getBoundingClientRect();
+                setContainerBounds(bounds);
             }
 
-            socketSendMessage(props.ws, props.room, props.userName, "getGameState", null)
-            setIsWsActual(true)
-        }
-        if (containerRef.current) {
-            const bounds = containerRef.current.getBoundingClientRect();
-            setContainerBounds(bounds);
+            const handleResize = () => {
+                setIsMobile(window.innerWidth <= 600);
+            };
+
+            window.addEventListener('resize', handleResize);
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+
+        }catch (e){
+            alert("Что-то не так")
         }
     }, []);
 
@@ -124,18 +142,26 @@ const GameComponent = (props) => {
     }
 
     const placeDrag = (item) => {
-        setSelectedCard(item)
+        try {
+            setSelectedCard(item)
+        }catch (e){
+            alert("что-то пошло не так...")
+        }
     }
 
     const sendStepMessage = (pos, down) => {
-        setTime(30)
-        let payload = {
-            inTablePos: pos,
-            down: down,
-            card: selectedCard
+        try {
+            let payload = {
+                inTablePos: pos,
+                down: down,
+                card: selectedCard
+            }
+            socketSendMessage(props.ws, props.room, props.userName, "gameStep", payload)
+            setSelectedCard(null)
+        }catch (e){
+            console.log(e)
         }
-        socketSendMessage(props.ws, props.room, props.userName, "gameStep", payload)
-        setSelectedCard(null)
+        setTime(30)
     }
 
     const dropSelectCard = () => {
@@ -143,36 +169,45 @@ const GameComponent = (props) => {
     }
 
     const checkTablePossibleToGiveCard = (item) => {
-        for (const element of table) {
-            if (element.downCard != null && element.downCard.rank === item.rank)
-                return true
+        try {
+            for (const element of table) {
+                if (element.downCard != null && element.downCard.rank === item.rank)
+                    return true
 
-            if (element.upCard != null && element.upCard.rank === item.rank)
-                return true
+                if (element.upCard != null && element.upCard.rank === item.rank)
+                    return true
+            }
+            return false
+        }catch (e){
+            alert("критическая ошибка")
         }
-        return false
     }
 
     const placeDrop = (item, index) => {
-        if (!deffensePlayer && countCardsOnTable !== 0 && checkTablePossibleToGiveCard(selectedCard)
-        ) {
-            sendStepMessage(countCardsOnTable, true)
-            return;
-        }
 
-        if (item == null) {
-            sendStepMessage(0, true)
-            return
-        }
+        try {
+            if (!deffensePlayer && countCardsOnTable !== 0 && checkTablePossibleToGiveCard(selectedCard)
+            ) {
+                sendStepMessage(countCardsOnTable, true)
+                return;
+            }
 
-        console.log(selectedCard)
-        console.log(table[index])
-        console.log(table)
-        console.log(index)
-        if (selectedCard != null && selectedCard.suit === table[index].downCard.suit && cardValues[selectedCard.rank] >= cardValues[table[index].downCard.rank]
-            || (selectedCard.suit === trump.suit && table[index].downCard.suit !== trump.suit)
-        ) {
-            sendStepMessage(index, false)
+            if (item == null) {
+                sendStepMessage(0, true)
+                return
+            }
+
+            console.log(selectedCard)
+            console.log(table[index])
+            console.log(table)
+            console.log(index)
+            if (selectedCard != null && selectedCard.suit === table[index].downCard.suit && cardValues[selectedCard.rank] >= cardValues[table[index].downCard.rank]
+                || (selectedCard.suit === trump.suit && table[index].downCard.suit !== trump.suit)
+            ) {
+                sendStepMessage(index, false)
+            }
+        }catch (e){
+            alert("критическая ошибка")
         }
     }
 
@@ -208,17 +243,19 @@ const GameComponent = (props) => {
 
                         <div ref={containerRef} className={"container-game"}>
                             <div className="box-2">
-                                <div className="cardhandler" style={{top: "100px"}}>
+                                <div className="cardhandler" >
                                     {Array.from({length: countCardAtOpp}, (_, index) => index).map((item, index) =>
                                         (
                                             <div
                                                 className="card3"
                                                 style={{
                                                     backgroundPosition: 0,
-                                                    right: -100 - item * 20 + "px",
-                                                    position: "absolute", ...(props.styleCardSize),
+                                                    right: -72 - item * 20 + "px",
+                                                    bottom: "-200px",
+                                                    position: "absolute",
                                                     zIndex: item,
-                                                    minWidth: "100px"
+                                                    minWidth: isMobile ? "72px" : "100px",
+                                                    maxHeight: isMobile ? "100px" : "140px"
                                                 }}
                                             ></div>
                                         )
@@ -239,15 +276,15 @@ const GameComponent = (props) => {
                                                                         (
                                                                             <div>
                                                                                 <div
-                                                                                    className="card"
-                                                                                    style={{backgroundPosition: new Card3(item.downCard.rank, item.downCard.suit).backgroundPosition, ...styleCardSize}}
+                                                                                    className="card style-card-size"
+                                                                                    style={{backgroundPosition: new Card3(item.downCard.rank, item.downCard.suit).backgroundPosition}}
                                                                                 >
                                                                                     {
                                                                                         item.upCard ?
                                                                                             (
                                                                                                 <div
-                                                                                                    className="card2child"
-                                                                                                    style={{backgroundPosition: new Card3(item.upCard.rank, item.upCard.suit).backgroundPosition, ...styleCardSize}}>
+                                                                                                    className="card2child style-card-size"
+                                                                                                    style={{backgroundPosition: new Card3(item.upCard.rank, item.upCard.suit).backgroundPosition}}>
                                                                                                 </div>
                                                                                             ) : (<div></div>)
                                                                                     }
@@ -264,19 +301,13 @@ const GameComponent = (props) => {
                                 </div>
                                 <div className="trump">
                                     <div
-                                        className="card3"
-                                        style={
-                                            {
-
-                                                backgroundPosition: 0, ...styleCardSize
-
-                                            }}
-                                    >
+                                        className="card3 style-card-size"
+                                        style={{backgroundPosition: 0}}>
                                         {
                                             trump ? (
                                                 <div
-                                                    className="card2child"
-                                                    style={{backgroundPosition: new Card3(trump.rank, trump.suit).backgroundPosition, ...styleCardSize}}>
+                                                    className="card2child style-card-size"
+                                                    style={{backgroundPosition: new Card3(trump.rank, trump.suit).backgroundPosition}}>
                                                 </div>
                                             ) : (<div/>)
                                         }
@@ -294,7 +325,6 @@ const GameComponent = (props) => {
                                                         <div
                                                         >
                                                             <CardInHandComponent item={item}
-                                                                                 styleCardSize={styleCardSize}
                                                                                  index={index}
                                                                                  size={containerBounds}
                                                                                  sizesCards={containerInfo}
@@ -323,12 +353,12 @@ const GameComponent = (props) => {
                                                             (<Button style={{
                                                                 margin: "10px",
                                                                 backgroundColor: "white"
-                                                            }} color="success" onClick={pullOf}>стянуть</Button>)
+                                                            }} color="success" onClick={pullOf} >pull off</Button>)
                                                             :
                                                             (<Button style={{
                                                                 margin: "10px",
                                                                 backgroundColor: "white"
-                                                            }} color="success" onClick={complete}>завершить</Button>)
+                                                            }} color="success" onClick={complete} >complete</Button>)
                                                     }
                                                 </div>
                                             ) : (
@@ -341,7 +371,7 @@ const GameComponent = (props) => {
                                 <Button style={{
                                     margin: "10px",
                                     backgroundColor: "white"
-                                }} color="success" onClick={surrender}>Сдаться</Button>
+                                }} color="success" onClick={surrender} >surrender</Button>
                             </div>
                         </div>
                     </div>

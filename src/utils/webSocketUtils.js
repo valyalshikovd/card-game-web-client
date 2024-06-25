@@ -27,17 +27,22 @@ export const socketCreate =  (room, userName, func ) => {
 
 export const socketSendMessage = (ws, room, userName, command, payload) => {
 
+    try {
+        const message = {
+            room: room,
+            userName: userName,
+            command: command,
+            payload: JSON.stringify(payload)
+        }
 
-    const message = {
-        room: room,
-        userName: userName,
-        command: command,
-        payload: JSON.stringify(payload)
+        console.log("отправленно сообщение " + JSON.stringify(message))
+
+        ws.send(JSON.stringify(message))
+    }catch (e){
+
+        alert("Ошибка!")
     }
 
-    console.log("отправленно сообщение " + JSON.stringify(message))
-
-    ws.send(JSON.stringify(message))
 }
 
 

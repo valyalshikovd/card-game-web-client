@@ -30,13 +30,27 @@ const RoomsComponent = (props) => {
     }
 
     const handleChangeCurrentItem = (room) => {
-        setCurrentRoom(room)
-
-        setChoosingRoomFlag(true)
+        try {
+            if(room.countPlayer > 1){
+                return
+            }
+            setCurrentRoom(room)
+            setChoosingRoomFlag(true)
+        }catch (e){
+            console.error("ошибка")
+        }
     }
 
     const handleChangeChoosingRoomFlag = (value) => {
         setChoosingRoomFlag(value)
+        getRooms()
+            .then(async r => {
+                console.log(r)
+                setRoomList(r)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
     }
 
     return (
@@ -62,7 +76,6 @@ const RoomsComponent = (props) => {
                                 <Button variant="outlined"
                                     onClick={
                                     () => {
-                                        console.log("кнопка")
                                         setCreateRoomFlag(true)
                                     }
                                 } fullWidth={true} color={"secondary"}>

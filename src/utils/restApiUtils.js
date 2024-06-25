@@ -17,15 +17,14 @@ export const getRooms = async () => {
     ).catch(
         (error) => {
             res = error
+            alert("не удалось выполнить запрос")
         }
     )
     return res
 
 }
 
-export const createRoom = (roomName) => {
-
-    console.log("создание комнаты")
+export const createRoom = async (roomName) => {
 
 
     const options = {
@@ -36,5 +35,13 @@ export const createRoom = (roomName) => {
         body: roomName
     };
 
-    return  fetch(URL, options)
+    let result
+    await fetch(URL, options).then(
+        async (response) => {
+            result = await response.json()
+        }
+    )
+
+
+    return result
 }

@@ -100,7 +100,11 @@ export class Card3 {
         this.flipped = false;
         var suits = {HEARTS: 0, DIAMONDS: 13, CLUBS: 26, SPADES: 39};
         this.position = suits[this.suit] + this.value;
-        this.backgroundPosition = -100 * this.position + "px";
+        if(window.innerWidth < 600){
+            this.backgroundPosition = Math.round(-71.43396 * this.position) + "px";
+        }else {
+            this.backgroundPosition = -100 * this.position + "px";
+        }
         console.log(this.backgroundPosition)
     }
 }

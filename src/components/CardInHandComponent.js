@@ -8,53 +8,20 @@ const CardInHandComponent = (props) =>  {
     const [dragging, setDragging] = useState(false);
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
-    const handleMouseDown = (e) => {
-        setDragging(false)
-        console.log("Начало драга для " + props.item.suit)
-        props.placeDrag(props.item)
-        setDragging(true);
-        setStartPos({
-            x: e.clientX - pos.x,
-            y: e.clientY - pos.y
-        });
-        console.log(props.size)
-        setPos({ x: 0, y: 0 });
-
+    const handleMouseDown = (event) => {
+        try {
+            startDragging(event.clientX, event.clientY)
+        }catch (e){
+            console.error("Something wrong..")
+        }
     };
 
     const handleMouseUp = () => {
-        setDragging(false);
-
-        props.sizesCards.forEach(
-            (elem, index) => {
-                console.log(index + "")
-                if(pos.x + startPos.x >= elem.left && pos.x + startPos.x  <= elem.left + elem.width &&
-                    pos.y + startPos.y  >= elem.top && pos.y + startPos.y <= elem.top +elem.height){
-                    console.log("гоооол" + index)
-                    props.placeDrop(props.item, index)
-                    props.dropSelectCard()
-                    props.updater()
-                    setPos({ x: 0, y: 0 });
-                    return
-                }
-            })
-
-        if(pos.x + startPos.x >= props.size.left && pos.x + startPos.x  <= props.size.left + props.size.width &&
-            pos.y + startPos.y  >= props.size.top && pos.y + startPos.y <= props.size.top + props.size.height
-        && !props.defence){
-            console.log("гоооол")
-            props.placeDrop(null, 0)
-            props.dropSelectCard()
-            setPos({ x: 0, y: 0 });
-            props.updater()
-            return
+        try {
+            endDragging()
+        }catch (e){
+            console.error("Something wrong..")
         }
-
-        props.dropSelectCard()
-        setPos({ x: 0, y: 0 });
-        setDragging(false);
-
-        props.updater()
     };
 
     const startDragging = (x , y) => {
@@ -71,8 +38,12 @@ const CardInHandComponent = (props) =>  {
     }
 
     const handleTouchStart = (e) => {
-        const touch = e.touches[0];
-        startDragging(touch.clientX, touch.clientY);
+        try {
+            const touch = e.touches[0];
+            startDragging(touch.clientX, touch.clientY);
+        }catch (e){
+            console.error("Something wrong..")
+        }
     };
 
     const handleMouseMove = (e) => {
@@ -146,11 +117,11 @@ const CardInHandComponent = (props) =>  {
              onTouchMove={handleTouchMove}
              onTouchEnd={handleTouchEnd}>
             <div
-                className="card2"
+                className="card2 style-card-size"
                 style={{
                     backgroundPosition: new Card3(props.item.rank, props.item.suit).backgroundPosition,
                     left: props.index * 20 + "px",
-                    position: "absolute", ...(props.styleCardSize)
+                    position: "absolute"
                 }}
             ></div>
         </div>

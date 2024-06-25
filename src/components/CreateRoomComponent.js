@@ -12,29 +12,30 @@ const CreateRoomComponent = (props) => {
         setRoomName(event.target.value)
     }
     const handleCreateRoom = () => {
-        props.changeFlag(false)
-
+        if(roomName === ""){
+            return
+        }
         createRoom(roomName).then(
-            (res) => {
-                console.log("успешно")
-            }
-        ).catch(
-            (err) => {
-                console.log(err)
+            async (result) => {
+                console.log(result)
+                props.changeFlag(false)
+
+                props.handleChangeCurrentItem(result)
             }
         )
-
-        props.handleChangeCurrentItem({
-            roomName : roomName,
-            status : "OPEN",
-            countPlayer : 1
-        })
+            .catch(
+                (err) => {
+                    console.log(err)
+                    alert("что-то полшло не так")
+                }
+            )
     }
 
-    return(
+    return (
         <div className={"component-create-room"}>
-            <TextField  color="secondary"  value={roomName} onChange={handleChange}></TextField>
-            <Button variant="outlined" color="secondary" fullWidth={true} onClick={handleCreateRoom}>Создать комнату</Button>
+            <TextField color="secondary" value={roomName} onChange={handleChange}></TextField>
+            <Button variant="outlined" color="secondary" fullWidth={true} onClick={handleCreateRoom}>Создать
+                комнату</Button>
         </div>
     )
 
