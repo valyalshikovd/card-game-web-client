@@ -54,6 +54,9 @@ const GameComponent = (props) => {
         setIsWinner(false)
     });
 
+    document.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, { passive: false });
 
     const socketCommands = {
         ...props.wsCommand,
