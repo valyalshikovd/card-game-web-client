@@ -18,7 +18,7 @@ function TimerComponent(props) {
 
     return (
         <div>
-            <p>Вы ходите. У вас осталось: {timeLeft} seconds</p>
+            <p>Осталось: {timeLeft} сек</p>
         </div>
     );
 }
