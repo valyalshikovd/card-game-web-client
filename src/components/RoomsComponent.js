@@ -81,6 +81,21 @@ const RoomsComponent = (props) => {
                                 } fullWidth={true} color={"secondary"}>
                                     Создать комнтату
                                 </Button>
+                                <Button variant="outlined"
+                                        onClick={
+                                            () => {
+                                                getRooms()
+                                                    .then(async r => {
+                                                        console.log(r)
+                                                        setRoomList(r)
+                                                    })
+                                                    .catch((e) => {
+                                                        console.log(e)
+                                                    })
+                                            }
+                                        } fullWidth={true} color={"secondary"}>
+                                    Обновить
+                                </Button>
                             </div>
                             <div className="content">
                                 {

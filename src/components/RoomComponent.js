@@ -56,6 +56,7 @@ const RoomComponent = (props) => {
 
 
     const handleBackButton = () => {
+        socketSendMessage(ws.current, props.item.roomId, props.name, 'leaveFromRoom', null)
         props.handleChangeChoosingRoomFlag(false)
     }
 

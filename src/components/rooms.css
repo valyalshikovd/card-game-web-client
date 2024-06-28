@@ -5,6 +5,7 @@
     background-color: #ffffff; /* Белый фон */
     border-radius: 20px; /* Закругленные углы */
     padding: 20px;
+    padding-top: 60px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
     text-align: center; /* Центрирование содержимого */
     position: relative; /* Позиционирование для кнопки */

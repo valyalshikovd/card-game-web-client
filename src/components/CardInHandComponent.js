@@ -7,6 +7,10 @@ const CardInHandComponent = (props) =>  {
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+    const prev = (event) => {
+        event.preventDefault();
+    };
+    const opts = { passive: false ,  once: true}
 
     const handleMouseDown = (event) => {
         try {
@@ -39,6 +43,7 @@ const CardInHandComponent = (props) =>  {
 
     const handleTouchStart = (e) => {
         try {
+            document.addEventListener('touchmove', prev, opts);
             const touch = e.touches[0];
             startDragging(touch.clientX, touch.clientY);
         }catch (e){
@@ -56,6 +61,7 @@ const CardInHandComponent = (props) =>  {
     };
     const handleTouchMove = (e) => {
         if (dragging) {
+            document.addEventListener('touchmove', prev, opts);
             const touch = e.touches[0];
             setPos({
                 x: touch.clientX - startPos.x,
@@ -65,10 +71,16 @@ const CardInHandComponent = (props) =>  {
     };
 
     const handleTouchEnd = () => {
+
+        console.log("действие исполняется")
+
+
+
         endDragging();
     };
 
     const endDragging = () => {
+        document.removeEventListener('touchmove', prev, opts)
         setDragging(false);
 
         props.sizesCards.forEach(
